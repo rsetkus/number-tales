@@ -5,6 +5,8 @@ plugins {
 }
 
 val frameworkName = "NumberTales"
+version = "1.0.0"
+group = "lt.setkus.numbertales"
 
 kotlin {
     jvm()
@@ -25,9 +27,18 @@ repositories {
 }
 
 val jvmMainImplementation by configurations
+val jvmTestImplementation by configurations
+
 dependencies {
     commonMainImplementation(kotlin("stdlib-common"))
+
+    commonTestImplementation(kotlin("test-common"))
+    commonTestImplementation(kotlin("test-annotations-common"))
+
     jvmMainImplementation(kotlin("stdlib-jdk8"))
+
+    jvmTestImplementation(kotlin("test:1.3.60"))
+    jvmTestImplementation(kotlin("test-junit:1.3.60"))
 }
 
 tasks.register("releaseFatFramework", FatFrameworkTask::class) {
