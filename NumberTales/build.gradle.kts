@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.FatFrameworkTask
 
 plugins {
     kotlin("multiplatform") version "1.3.60"
+    id("lt.setkus.numbertales.publish")
 }
 
 val frameworkName = "NumberTales"
