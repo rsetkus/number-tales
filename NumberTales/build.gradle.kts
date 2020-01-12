@@ -1,12 +1,14 @@
+import lt.setkus.numbertales.Versions
 import org.jetbrains.kotlin.gradle.tasks.FatFrameworkTask
 
 plugins {
     kotlin("multiplatform") version "1.3.60"
+    kotlin("plugin.serialization") version "1.3.60"
     id("lt.setkus.numbertales.publish")
 }
 
-val frameworkName = "NumberTales"
-version = "1.0.0"
+val frameworkName = "number-tales"
+version = "1.0.1"
 group = "lt.setkus.numbertales"
 
 kotlin {
@@ -31,10 +33,34 @@ val jvmMainImplementation by configurations
 val jvmTestImplementation by configurations
 
 dependencies {
+    //Kotlin
     commonMainImplementation(kotlin("stdlib-common"))
+
+    //Coroutines
+    commonMainImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Versions.kotlinCoroutines}")
+
+    //Ktor
+    commonMainImplementation("io.ktor:ktor-client-core:${Versions.ktor}")
+    commonMainImplementation("io.ktor:ktor-client-json:${Versions.ktor}")
+    commonMainImplementation("io.ktor:ktor-client-logging:${Versions.ktor}")
+    commonMainImplementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
+
+    //Serialize
+    commonMainImplementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.kotlinxSerialization}")
 
     commonTestImplementation(kotlin("test-common"))
     commonTestImplementation(kotlin("test-annotations-common"))
+
+    //Jvm Coroutines
+    jvmMainImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
+
+    //Jvm Ktor
+    jvmMainImplementation("io.ktor:ktor-client-core-jvm:${Versions.ktor}")
+    jvmMainImplementation("io.ktor:ktor-client-json-jvm:${Versions.ktor}")
+    jvmMainImplementation("io.ktor:ktor-client-serialization-jvm:${Versions.ktor}")
+
+    //Jvm Serialize
+    jvmMainImplementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}")
 
     jvmMainImplementation(kotlin("stdlib-jdk8"))
 

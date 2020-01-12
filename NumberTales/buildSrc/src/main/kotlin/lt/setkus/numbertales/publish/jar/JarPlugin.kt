@@ -15,7 +15,7 @@ class JarPlugin : Plugin<Project> {
         extensions.getByType(PublishingExtension::class.java).apply {
             repositories { repositoryHandler ->
                 repositoryHandler.maven {
-                    it.name = "6ee21db8d0db-releases"
+                    it.name = "MyArtifactory-releases"
                     it.url = project.uri("http://localhost:8081/artifactory/libs-release-local")
                     it.credentials { credentials ->
                         credentials.username = artifactoryUsername
@@ -27,8 +27,8 @@ class JarPlugin : Plugin<Project> {
 
         tasks.register("publishJarToArtifactory") {
             it.dependsOn(
-                    tasks.named("publishMetadataPublicationTo6ee21db8d0db-releasesRepository"),
-                    tasks.named("publishJvmPublicationTo6ee21db8d0db-releasesRepository")
+                    tasks.named("publishMetadataPublicationToMyArtifactory-releasesRepository"),
+                    tasks.named("publishJvmPublicationToMyArtifactory-releasesRepository")
             )
         }
     }

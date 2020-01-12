@@ -12,7 +12,7 @@ class FrameworkPlugin : Plugin<Project> {
             it.dependsOn(tasks.named("releaseFatFramework"))
 
             it.from("$buildDir/fat-framework")
-            it.archiveFileName.set("NumberTales.framework.zip")
+            it.archiveFileName.set("number-tales.framework.zip")
             it.destinationDirectory.set(file("$buildDir/fat-framework-zip"))
         }
 
