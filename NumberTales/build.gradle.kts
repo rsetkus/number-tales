@@ -8,7 +8,7 @@ plugins {
 }
 
 val frameworkName = "number-tales"
-version = "1.0.1"
+version = "1.0.3"
 group = "lt.setkus.numbertales"
 
 kotlin {
@@ -55,6 +55,7 @@ dependencies {
     jvmMainImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
 
     //Jvm Ktor
+    jvmMainImplementation("io.ktor:ktor-client-android:${Versions.ktor}")
     jvmMainImplementation("io.ktor:ktor-client-core-jvm:${Versions.ktor}")
     jvmMainImplementation("io.ktor:ktor-client-json-jvm:${Versions.ktor}")
     jvmMainImplementation("io.ktor:ktor-client-serialization-jvm:${Versions.ktor}")
