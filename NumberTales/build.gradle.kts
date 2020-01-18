@@ -1,17 +1,50 @@
 import lt.setkus.numbertales.Versions
 import org.jetbrains.kotlin.gradle.tasks.FatFrameworkTask
 
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+}
+
 plugins {
     kotlin("multiplatform") version "1.3.60"
     kotlin("plugin.serialization") version "1.3.60"
+    id("com.android.library") version "3.2.1"
     id("lt.setkus.numbertales.publish")
 }
-
 val frameworkName = "number-tales"
 version = "1.0.3"
 group = "lt.setkus.numbertales"
 
+android {
+    compileSdkVersion(28)
+
+    defaultConfig {
+        minSdkVersion(16)
+        targetSdkVersion(28)
+    }
+
+    sourceSets {
+        val main by getting {
+            setRoot("src/androidMain")
+        }
+        val test by getting {
+            setRoot("src/androidTest")
+        }
+    }
+
+    lintOptions {
+        isAbortOnError = false
+    }
+
+    packagingOptions {
+        exclude("META-INF/*.kotlin_module")
+    }
+}
+
 kotlin {
+    android()
     jvm()
     iosArm64 {
         binaries.framework {
@@ -23,10 +56,6 @@ kotlin {
             baseName = frameworkName
         }
     }
-}
-
-repositories {
-    mavenCentral()
 }
 
 val jvmMainImplementation by configurations
